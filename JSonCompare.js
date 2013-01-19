@@ -1,5 +1,7 @@
+//JSonCmp v. 1.2
 //Compare JSon objects
 //Copyright(c) Alexander "Rikki Mongoose" Teut, 2013
+//http://github.com/rikkimongoose
 
 function compareJSons(src1, src2) {
     //Based on the idea from Ext.JSON functions.
@@ -27,6 +29,12 @@ function compareJSons(src1, src2) {
     var isObject = function(obj){
         return (typeof obj == "object");
     };
+    var isFunction = function(func){
+        return (typeof func == "function");
+    };
+    var compareFunctions = function(func1, func2) {
+        return func1.toString() == func2.toString();
+    };
     var doComparation = function(sourceStr1, sourceStr2) {
         if(sourceStr1 == sourceStr2) {
             return true;
@@ -34,11 +42,18 @@ function compareJSons(src1, src2) {
         if(!isExisting(sourceStr1)) {
             return !isExisting(sourceStr2);
         }
+        if(isFunction(sourceStr1)) {
+            if(isFunction(sourceStr1)) {
+                compareFunctions(sourceStr1, sourceStr2);
+            } else {
+                return false;
+            }
+        }
         var sourceObj1 = prepareToCompare(sourceStr1),
             lengthObj1 = getObjectLength(sourceObj1),
             sourceObj2 = prepareToCompare(sourceStr2),
             lengthObj2 = getObjectLength(sourceObj2);
-        if(lengthObj1 != lengthObj2) {       
+        if(lengthObj1 != lengthObj2) {
             return false;
         }
         if(isObject(sourceObj1)) {
