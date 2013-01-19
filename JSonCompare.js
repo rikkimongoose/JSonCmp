@@ -35,6 +35,37 @@ function compareJSons(src1, src2) {
     var compareFunctions = function(func1, func2) {
         return func1.toString() == func2.toString();
     };
+	var CmpStack = {
+		_stackArray : [],
+		_cmpStackCount : 0,
+		// Array Remove - By John Resig (MIT Licensed)
+		_cmpStackRemove : function(from) {
+			var rest = this._stackArray.slice(from + 1 || this._stackArray.length);
+			this._stackArray.length = from < 0 ? this._stackArray.length + from : from;
+			return this._stackArray.push.apply(this._stackArray, rest);
+		},
+		objInCmpStack : function(obj) {
+			var i = this._cmpStackCount;
+			while(i--) {
+				if(obj === this._stackArray[i]) {
+					return i;
+				}
+			}
+			return -1;
+		},
+		addObject : function(obj) {
+			this._stackArray.push(obj);
+			this._cmpStackCount++;
+		},
+		remObject : function(obj) {
+			var pos = this.objInCmpStack(obj);
+			if(pos == -1) {
+				return;
+			}
+			
+			this._cmpStackCount--;
+		}
+	};
     var doComparation = function(sourceStr1, sourceStr2) {
         if(sourceStr1 == sourceStr2) {
             return true;
@@ -58,13 +89,18 @@ function compareJSons(src1, src2) {
         }
         if(isObject(sourceObj1)) {
             if(isObject(sourceObj2)) {
+				CmpStack.addObject(sourceObj1);
+				CmpStack.addObject(sourceObj2);
                 for(var propertyObject in sourceObj1) {
                     var propertyObjectField1 = sourceObj1[propertyObject];
                     var propertyObjectField2 = sourceObj2[propertyObject];
-                    if(!isExisting(propertyObjectField2) || !doComparation(propertyObjectField1, propertyObjectField2)) {
-                        return false;
-                    }
+					if(CmpStack.objInCmpStack(propertyObjectField1) || CmpStack.objInCmpStack(propertyObjectField1)) {
+						return (propertyObjectField1 === propertyObjectField1);
+					}
+                    return isExisting(propertyObjectField2) && doComparation(propertyObjectField1, propertyObjectField2);
                 }
+				CmpStack.remObject(sourceObj1);
+				CmpStack.remObject(sourceObj2);
             } else {
                 return false;
             }
