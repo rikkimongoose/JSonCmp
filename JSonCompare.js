@@ -1,39 +1,45 @@
-//JSonCmp v. 1.2
+//JSonCmp v. 1.2.2
 //Compare JSon objects
 //Copyright(c) Alexander "Rikki Mongoose" Teut, 2013
 //http://github.com/rikkimongoose
 
 function compareJSons(src1, src2) {
-	//Based on the idea from Ext.JSON functions.
-	var decodeJSon = function(sourceStr) {
-		var isJSONSupported = (window.JSON && JSON.toString() == '[object JSON]');
-			evalJSon = function(code) {
-				return eval('(' + code + ')');
+	var CmpJSon = {
+		//Based on the idea from Ext.JSON functions.
+		decodeJSon : function(sourceStr) {
+			var isJSONSupported = (window.JSON && JSON.toString() == '[object JSON]');
+				evalJSon = function(code) {
+					return eval('(' + code + ')');
+				}
+			dc = isJSONSupported ? JSON.parse : evalJSon;
+			try {
+				return dc(sourceStr);
+			} catch (e) {
+				return sourceStr;
 			}
-		dc = isJSONSupported ? JSON.parse : evalJSon;
-		try {
-			return dc(sourceStr);
-		} catch (e) {
-			return sourceStr;
+		},
+		ObjectAlg : {
+			prepareToCompare : function(sourceStr){
+				return (typeof sourceStr == "string") ? CmpJSon.decodeJSon(sourceStr) : sourceStr;
+			},
+			getObjectLength : function(sourceObj){
+				return (sourceObj && CmpJSon.ObjectAlg.isExisting(sourceObj.length)) ? sourceObj.length : 0;
+			},
+			isExisting : function(obj){
+				return (typeof obj != "undefined");
+			},
+			isObject : function(obj){
+				return (typeof obj == "object");
+			}
+		},
+		FunctionAlg : {
+			isFunction : function(func){
+				return (typeof func == "function");
+			},
+			compareFunctions : function(func1, func2) {
+				return func1.toString() == func2.toString();
+			}
 		}
-	};
-	var prepareToCompare = function(sourceStr){
-		return (typeof sourceStr == "string") ? decodeJSon(sourceStr) : sourceStr;
-	};
-	var getObjectLength = function(sourceObj){
-		return (sourceObj && isExisting(sourceObj.length)) ? sourceObj.length : 0;
-	};
-	var isExisting = function(obj){
-		return (typeof obj != "undefined");
-	};
-	var isObject = function(obj){
-		return (typeof obj == "object");
-	};
-	var isFunction = function(func){
-		return (typeof func == "function");
-	};
-	var compareFunctions = function(func1, func2) {
-		return func1.toString() == func2.toString();
 	};
 	var CmpStack = {
 		_stackArray : [],
@@ -70,26 +76,26 @@ function compareJSons(src1, src2) {
 		if(sourceStr1 == sourceStr2) {
 			return true;
 		}
-		if(!isExisting(sourceStr1)) {
-			return !isExisting(sourceStr2);
+		if(!CmpJSon.ObjectAlg.isExisting(sourceStr1)) {
+			return !CmpJSon.ObjectAlg.isExisting(sourceStr2);
 		}
-		if(isFunction(sourceStr1)) {
-			if(isFunction(sourceStr1)) {
-				compareFunctions(sourceStr1, sourceStr2);
+		if(CmpJSon.FunctionAlg.isFunction(sourceStr1)) {
+			if(CmpJSon.FunctionAlg.isFunction(sourceStr1)) {
+				CmpJSon.FunctionAlg.compareFunctions(sourceStr1, sourceStr2);
 			} else {
 				return false;
 			}
 		}
-		var sourceObj1 = prepareToCompare(sourceStr1),
-			lengthObj1 = getObjectLength(sourceObj1),
-			sourceObj2 = prepareToCompare(sourceStr2),
-			lengthObj2 = getObjectLength(sourceObj2),
+		var sourceObj1 = CmpJSon.ObjectAlg.prepareToCompare(sourceStr1),
+			lengthObj1 = CmpJSon.ObjectAlg.getObjectLength(sourceObj1),
+			sourceObj2 = CmpJSon.ObjectAlg.prepareToCompare(sourceStr2),
+			lengthObj2 = CmpJSon.ObjectAlg.getObjectLength(sourceObj2),
 			result = true;
 		if(lengthObj1 != lengthObj2) {
 			return false;
 		}
-		if(isObject(sourceObj1)) {
-			if(isObject(sourceObj2)) {
+		if(CmpJSon.ObjectAlg.isObject(sourceObj1)) {
+			if(CmpJSon.ObjectAlg.isObject(sourceObj2)) {
 				CmpStack.addObject(sourceObj1);
 				CmpStack.addObject(sourceObj2);
 				for(var propertyObject in sourceObj1) {
@@ -101,7 +107,7 @@ function compareJSons(src1, src2) {
 					if(CmpStack.objInCmpStack(propertyObjectField1) > -1 || CmpStack.objInCmpStack(propertyObjectField2) > -1) {
 						return (propertyObjectField1 === propertyObjectField1);
 					}
-					result = result && isExisting(propertyObjectField2) && doComparation(propertyObjectField1, propertyObjectField2);
+					result = result && CmpJSon.ObjectAlg.isExisting(propertyObjectField2) && doComparation(propertyObjectField1, propertyObjectField2);
 					if(!result) {
 						break;
 					}
@@ -113,7 +119,7 @@ function compareJSons(src1, src2) {
 				return false;
 			}
 		} else {
-			if(!isObject(sourceObj2)) {
+			if(!CmpJSon.ObjectAlg.isObject(sourceObj2)) {
 				return sourceObj1 === sourceObj2;
 			} else {
 				return false;
