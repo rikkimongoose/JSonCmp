@@ -1,4 +1,4 @@
-//JSonCmp v. 1.2.2
+//JSonCmp v. 1.2.4
 //Compare JSon objects
 //Copyright(c) Alexander "Rikki Mongoose" Teut, 2013
 //http://github.com/rikkimongoose
@@ -70,6 +70,9 @@ function compareJSons(src1, src2) {
 			}
 			this._cmpStackRemove(pos);
 			this._cmpStackCount--;
+		},
+		popLastObject : function() {
+			this._stackArray.pop();
 		}
 	};
 	var doComparation = function(sourceStr1, sourceStr2) {
@@ -112,8 +115,8 @@ function compareJSons(src1, src2) {
 						break;
 					}
 				}
-				CmpStack.remObject(sourceObj1);
-				CmpStack.remObject(sourceObj2);
+				CmpStack.popLastObject(); // Remove sourceObj1
+				CmpStack.popLastObject(); // Remove sourceObj2
 				return result;
 			} else {
 				return false;
