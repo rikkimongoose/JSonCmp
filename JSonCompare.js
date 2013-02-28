@@ -1,4 +1,4 @@
-//JSonCmp v. 1.2.4
+//JSonCmp v. 1.2.5
 //Compare JSon objects
 //Copyright(c) Alexander "Rikki Mongoose" Teut, 2013
 //http://github.com/rikkimongoose
@@ -7,10 +7,10 @@ function compareJSons(src1, src2) {
 	var CmpJSon = {
 		//Based on the idea from Ext.JSON functions.
 		decodeJSon : function(sourceStr) {
-			var isJSONSupported = (window.JSON && JSON.toString() == '[object JSON]');
+			var isJSONSupported = (window.JSON && JSON.toString() == '[object JSON]'),
 				evalJSon = function(code) {
 					return eval('(' + code + ')');
-				}
+				};
 			dc = isJSONSupported ? JSON.parse : evalJSon;
 			try {
 				return dc(sourceStr);
