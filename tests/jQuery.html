@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <script language="javascript" src="jslib/jquery-1.9.js"></script>
+        <script language="javascript" src="../jsoncmp.js"></script>
+        <script language="javascript">
+			function showTest() {
+				var func = function(param) { var isTest = true },
+					source1 = { myFunc : func },
+					source2 = { myFunc : func };
+				
+				document.writeln("\nresult = " + jSonCmp($('div#divtest1'), $('div:first')));
+				document.writeln("$('div#divtest1') = [&#60;div id='divtest1'&#62;&#60;/div&#62;]");
+				document.writeln("$('div:first') = [&#60;div id='divtest1'&#62;&#60;/div&#62;]");
+			 }
+        </script>
+    </head>
+    <body>
+		<pre>
+			Compare $('div#divtest1') and $('div:first').
+			<script language="javascript">
+				showTest();
+			</script></pre>
+			<div id='divtest1'></div>
+			<div id='divtest2'></div>
+	</body>
+</html>

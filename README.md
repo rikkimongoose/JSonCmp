@@ -1,7 +1,7 @@
 JSonCmp
 =======
 
-Compare any JavaScript objects. The following types are supported:\
+Compare any JavaScript objects. The following types are supported:
 
 - value-typed
 - generated Objects
@@ -10,8 +10,45 @@ Compare any JavaScript objects. The following types are supported:\
 - arrays taking as sets (no care about order)
 - JSON-serialized items
 
+Interface
+====
+
+```javascript
+	jSonCom(object1, object2[, options]);
+```
+
+- *object1* - 1st object
+- *object2* - 2nd object
+- *options* - an optional param with extra config
+
+Returns:
+- *true* - objects has same properties with same values
+- *false* - they are different
+
 Usage
 ====
+
+JSonCmp can be used as a single file or as a [Ext.JS](http://www.sencha.com/products/extjs) plugin.
+
+To use it as *single file*, include **jsoncmp.js** as an outer JS file and use jSonCmp() function.
+
+```javascript
+	jSonCom(object1, object2);
+```
+
+To use it as an *[Ext.JS](http://www.sencha.com/products/extjs) plugin, include **jsoncmp.ext.js** as an outer JS file and use  Ext.ux.util.Object.jSonCmp() function.
+
+```javascript
+	Ext.ux.util.Object(object1, object2);
+```
+
+It needs Ext.js, of course.
+
+Options
+====
+Options are optional. If you didn't define an option, the default value will be used.
+
+x *arraysAsSets* - take arrays not like ordered lists, but as sets, ignoring the order. For example, [1, 2, 3, 4] and [1, 2, 4, 3] aren't equal as ordered lists, but are as sets. By default is *false*.
 
 History
 ====
@@ -28,13 +65,14 @@ That's why I've started this project. It's called JSonCmp, but now it supports m
 Versions
 ====
 
-*1.3 alpha*
+*1.3*
 
 + Fix the bug with global var
 + add Options param
 + add arrays comparation
 + add arrays comparation as sets
 + add jQuery objects comparation
++ add testing pages
 
 *1.2.2*
 

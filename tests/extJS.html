@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <script language="javascript" src="jslib/ext-all-dev.js"></script>
+        <script language="javascript" src="../jsoncmp.ext.js"></script>
+        <script language="javascript">
+			function showTest() {
+				var source1 = '{ "myitem1" : "1", "myitem2" : "2" }',
+					source2 = '{ "myitem2" : "2", "myitem1" : "1" }';
+				
+				document.writeln("\nresult = " + Ext.ux.util.Object.jSonCmp(source1, source2));
+				document.writeln("source1 = " + source1);
+				document.writeln("source2 = " + source2);
+			 }
+        </script>
+    </head>
+    <body>
+		<pre>
+			Compare 2 separated classes from Ext.JS plugin: Ext.ux.util.Object.jSonCmp(source1, source2)
+			<script language="javascript">
+				showTest();
+			</script></pre>
+	</body>
+</html>

@@ -5,7 +5,7 @@ Ext.namespace('Ext.ux.util');
  */
 Ext.ux.util.Object = function() {
 		//private comparer body
-		function compareJSons(src1, src2, options) {
+		function jSonCmp(src1, src2, options) {
 			var CmpJSon = {
 				//Based on the idea from Ext.JSON functions.
 				decodeJSon : function(sourceStr) {
@@ -186,13 +186,13 @@ Ext.ux.util.Object = function() {
     return {
         /**
          * Compares two objects to determine if they are identical.
-         * @param {Object} o1
-         * @param {Object} o2
+         * @param {Object} object 1
+         * @param {Object} object 2
 		 * @param (Object) options
          * @return Boolean
          */
-        compare: function(o1, o2, options){
-            return compareJSons(o1, o2, options);
+        jSonCmp : function(o1, o2, options){
+            return jSonCmp(o1, o2, options);
         }
     };
 }();

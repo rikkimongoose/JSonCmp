@@ -1,17 +1,17 @@
 <html>
     <head>
-        <script language="javascript" src="../JSonCompare.js"></script>
+        <script language="javascript" src="../jsoncmp.js"></script>
         <script language="javascript">
 			function showTest() {
 				var source1 = [ 1, 2, 3, 4, 5 ],
 					source2 = [ 1, 2, 3, 5, 4 ];
 				
 				document.writeln("\nDefault options:");
-				document.writeln("\nresult = " + compareJSons(source1, source2));
+				document.writeln("\nresult = " + jSonCmp(source1, source2));
 				document.writeln("source1 = " + source1);
 				document.writeln("source2 = " + source2);
 				document.writeln("\arraysAsSets: true");
-				document.writeln("\nresult = " + compareJSons(source1, source2, { arraysAsSets : true }));
+				document.writeln("\nresult = " + jSonCmp(source1, source2, { arraysAsSets : true }));
 				document.writeln("source1 = " + source1);
 				document.writeln("source2 = " + source2);
 			 }
