@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <script language="javascript" src="../JSonCompare.js"></script>
+        <script language="javascript">
+			function showTest() {
+				var func = function(param) { var isTest = true },
+					source1 = { myFunc : func },
+					source2 = { myFunc : func };
+				
+				document.writeln("\nresult = " + compareJSons(source1, source2));
+				document.writeln("source1.myFunc = " + source1.myFunc);
+				document.writeln("source2.myFunc = " + source2.myFunc);
+			 }
+        </script>
+    </head>
+    <body>
+		<pre>
+			Compare 2 separated classes with the same function as the only property.
+			<script language="javascript">
+				showTest();
+			</script></pre>
+		</pre>
+	</body>
+</html>

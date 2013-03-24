@@ -3,7 +3,7 @@
 //Copyright(c) Alexander "Rikki Mongoose" Teut, 2013
 //http://github.com/rikkimongoose
 
-function compareJSons(src1, src2) {
+function compareJSons(src1, src2, options) {
 	var CmpJSon = {
 		//Based on the idea from Ext.JSON functions.
 		decodeJSon : function(sourceStr) {
@@ -84,7 +84,7 @@ function compareJSons(src1, src2) {
 	};
 	var doComparation = function(sourceStr1, sourceStr2, options) {
 		var Options = {
-			arraysAsSets: false
+			arraysAsSets : false
 		};
 		if(options) {
 			if(CmpJSon.ObjectAlg.isExisting(options.arraysAsSets))
@@ -98,7 +98,7 @@ function compareJSons(src1, src2) {
 		}
 		if(CmpJSon.FunctionAlg.isFunction(sourceStr1)) {
 			if(CmpJSon.FunctionAlg.isFunction(sourceStr2)) {
-				CmpJSon.FunctionAlg.compareFunctions(sourceStr1, sourceStr2);
+				return CmpJSon.FunctionAlg.compareFunctions(sourceStr1, sourceStr2);
 			} else {
 				return false;
 			}
@@ -135,7 +135,7 @@ function compareJSons(src1, src2) {
 						} else {
 							var iter = sourceObj1.length;
 							while(iter--) {
-								doComparation(sourceObj1[iter], sourceObj2[iter], Options);
+								result = result && doComparation(sourceObj1[iter], sourceObj2[iter], Options);
 							}
 						}
 					} else {
@@ -178,5 +178,5 @@ function compareJSons(src1, src2) {
 		}
 		return true;
 	}
-	return doComparation(src1, src2);
+	return doComparation(src1, src2, options);
 }
