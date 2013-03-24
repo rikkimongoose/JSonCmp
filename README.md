@@ -48,8 +48,11 @@ Options
 ====
 Options are optional. If you didn't define an option, the default value will be used.
 
-+ *arraysAsSets* - take arrays not like ordered lists, but as sets, ignoring the order. For example, [1, 2, 3, 4] and [1, 2, 4, 3] aren't equal as ordered lists, but are as sets. By default is *false*.
-
++ *arraysAsSets* - take arrays not like ordered lists, but as sets, ignoring the order. For example, [1, 2, 3, 4] and [1, 2, 4, 3] aren't equal as ordered lists, but are as sets. By default is *false*. Example:
+```javascript
+ jSonCmp([ 1, 2, 3, 4, 5 ], [ 1, 2, 3, 5, 4 ], { arraysAsSets : true })); # - false
+ jSonCmp([ 1, 2, 3, 4, 5 ], [ 1, 2, 3, 5, 4 ], { arraysAsSets : true })); # - true
+```
 History
 ====
 It started from a bug in a huge web project with UI based on [Ext.JS](http://www.sencha.com/products/extjs). The settings window asked me to save changes even if I didn't change anything.
