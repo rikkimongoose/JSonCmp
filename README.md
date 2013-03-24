@@ -48,7 +48,7 @@ Options
 ====
 Options are optional. If you didn't define an option, the default value will be used.
 
-x *arraysAsSets* - take arrays not like ordered lists, but as sets, ignoring the order. For example, [1, 2, 3, 4] and [1, 2, 4, 3] aren't equal as ordered lists, but are as sets. By default is *false*.
++ *arraysAsSets* - take arrays not like ordered lists, but as sets, ignoring the order. For example, [1, 2, 3, 4] and [1, 2, 4, 3] aren't equal as ordered lists, but are as sets. By default is *false*.
 
 History
 ====
