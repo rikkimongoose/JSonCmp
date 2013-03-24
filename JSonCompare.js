@@ -1,4 +1,4 @@
-//JSonCmp v. 1.2.5
+//JSonCmp v. 1.3
 //Compare JSon objects
 //Copyright(c) Alexander "Rikki Mongoose" Teut, 2013
 //http://github.com/rikkimongoose
