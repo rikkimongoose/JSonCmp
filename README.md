@@ -36,7 +36,7 @@ To use it as *single file*, include **jsoncmp.js** as an outer JS file and use j
 	jSonCom(object1, object2);
 ```
 
-To use it as an *[Ext.JS](http://www.sencha.com/products/extjs) plugin, include **jsoncmp.ext.js** as an outer JS file and use  Ext.ux.util.Object.jSonCmp() function.
+To use it as an [Ext.JS](http://www.sencha.com/products/extjs) plugin, include **jsoncmp.ext.js** as an outer JS file and use  Ext.ux.util.Object.jSonCmp() function.
 
 ```javascript
 	Ext.ux.util.Object(object1, object2);
