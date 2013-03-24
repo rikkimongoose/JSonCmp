@@ -34,6 +34,9 @@ function compareJSons(src1, src2) {
 			//ECMA Script standart check
 			isArray : function(obj) {
 				return Object.prototype.toString.call(obj);
+			},
+			isJQueryObject : function(obj) {
+				return (typeof jQuery != "undefined") && !jQuery.isPlainObject(obj);
 			}
 		},
 		FunctionAlg : {
@@ -135,6 +138,12 @@ function compareJSons(src1, src2) {
 								doComparation(sourceObj1[iter], sourceObj2[iter], Options);
 							}
 						}
+					} else {
+						return false;
+					}
+				} else if (CmpJSon.ObjectAlg.isJQueryObject(sourceObj1)) {
+					if(CmpJSon.ObjectAlg.isJQueryObject(sourceObj2)) {
+						return sourceObj1.is(sourceObj2);
 					} else {
 						return false;
 					}
