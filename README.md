@@ -27,19 +27,6 @@ That's why I've started this project. It's called JSonCmp, but now it supports m
 
 Versions
 ====
-*1.0*
-
-initial release. Enought to solve bug in project I've worked with, but nothing more
-
-*1.2*
-
-+ functions comparation
-+ add stack array to avoid cycling if an object links to itself somewere in properties' tree
-
-*1.2.2*
-
-+ code is refactored totally
-+ fix some little bugs
 
 *1.3 alpha*
 
@@ -48,6 +35,20 @@ initial release. Enought to solve bug in project I've worked with, but nothing m
 + add arrays comparation
 + add arrays comparation as sets
 + add jQuery objects comparation
+
+*1.2.2*
+
++ code is refactored totally
++ fix some little bugs
+
+*1.2*
+
++ functions comparation
++ add stack array to avoid cycling if an object links to itself somewere in properties' tree
+
+*1.0*
+
+initial release. Enought to solve bug in project I've worked with, but nothing more
 
 
 License
