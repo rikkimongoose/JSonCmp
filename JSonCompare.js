@@ -83,7 +83,7 @@ function compareJSons(src1, src2) {
 			return !CmpJSon.ObjectAlg.isExisting(sourceStr2);
 		}
 		if(CmpJSon.FunctionAlg.isFunction(sourceStr1)) {
-			if(CmpJSon.FunctionAlg.isFunction(sourceStr1)) {
+			if(CmpJSon.FunctionAlg.isFunction(sourceStr2)) {
 				CmpJSon.FunctionAlg.compareFunctions(sourceStr1, sourceStr2);
 			} else {
 				return false;
