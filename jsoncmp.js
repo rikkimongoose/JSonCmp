@@ -33,7 +33,7 @@ function jSonCmp(src1, src2, options) {
 			},
 			//ECMA Script standart check
 			isArray : function(obj) {
-				return Object.prototype.toString.call(obj);
+				return Object.prototype.toString.call(obj) === '[object Array]';
 			},
 			isJQueryObject : function(obj) {
 				return (typeof jQuery != "undefined") && !jQuery.isPlainObject(obj);
@@ -148,14 +148,17 @@ function jSonCmp(src1, src2, options) {
 						return false;
 					}
 				} else {
+					//console.log(sourceObj1);
+					//console.log(sourceObj2);
 					for(var propertyObject in sourceObj1) {
 						//debug output
-						//console.log(propertyObject + ":" + sourceObj1[propertyObject]);
-						//console.log(propertyObject + ":" + sourceObj2[propertyObject]);
+						console.log(propertyObject + ":" + sourceObj1[propertyObject]);
+						console.log(propertyObject + ":" + sourceObj2[propertyObject]);
 						var propertyObjectField1 = sourceObj1[propertyObject];
 						var propertyObjectField2 = sourceObj2[propertyObject];
 						if(CmpStack.objInCmpStack(propertyObjectField1) > -1 || CmpStack.objInCmpStack(propertyObjectField2) > -1) {
-							return (propertyObjectField1 === propertyObjectField1);
+							result = result && (propertyObjectField1 === propertyObjectField1);
+							continue;
 						}
 						result = result && CmpJSon.ObjectAlg.isExisting(propertyObjectField2) && doComparation(propertyObjectField1, propertyObjectField2);
 						if(!result) {
