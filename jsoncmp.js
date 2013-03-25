@@ -1,7 +1,7 @@
-//JSonCmp v. 1.3
+//JSonCmp v. 1.3.1
 //Compare JSon objects
 //Copyright(c) Alexander "Rikki Mongoose" Teut, 2013
-//http://github.com/rikkimongoose
+//http://github.com/rikkimongoose/jsoncmp
 
 function jSonCmp(src1, src2, options) {
 	var CmpJSon = {
