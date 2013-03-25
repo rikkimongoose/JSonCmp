@@ -9,8 +9,8 @@ Ext.ux.util.Object = function() {
 		//private comparer body
 		function jSonCmp(src1, src2, options) {
 			var CmpJSon = {
-					//Based on the idea from Ext.JSON functions.
-					decodeJSon : function(sourceStr) {
+				//Based on the idea from Ext.JSON functions.
+				decodeJSon : function(sourceStr) {
 					var isJSONSupported = (window.JSON && JSON.toString() == '[object JSON]');
 					if(!isJSONSupported){
 						return sourceStr;
@@ -135,11 +135,17 @@ Ext.ux.util.Object = function() {
 											}
 										}
 										result = result && isFoundInSet;
+										if(!result){
+											return false;
+										}
 									}
 								} else {
 									var iter = sourceObj1.length;
 									while(iter--) {
 										result = result && doComparation(sourceObj1[iter], sourceObj2[iter], Options);
+										if(!result){
+											return false;
+										}
 									}
 								}
 							} else {
@@ -152,6 +158,8 @@ Ext.ux.util.Object = function() {
 								return false;
 							}
 						} else {
+							//console.log(sourceObj1);
+							//console.log(sourceObj2);
 							for(var propertyObject in sourceObj1) {
 								//debug output
 								//console.log(propertyObject + ":" + sourceObj1[propertyObject]);
@@ -165,7 +173,7 @@ Ext.ux.util.Object = function() {
 									}
 									continue;
 								}
-								result = result && CmpJSon.ObjectAlg.isExisting(propertyObjectField2) && doComparation(propertyObjectField1, propertyObjectField2);
+								result = result && CmpJSon.ObjectAlg.isExisting(propertyObjectField2) && doComparation(propertyObjectField1, propertyObjectField2, Options);
 								if(!result) {
 									return false;
 								}
