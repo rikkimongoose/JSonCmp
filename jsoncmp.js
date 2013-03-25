@@ -131,11 +131,17 @@ function jSonCmp(src1, src2, options) {
 									}
 								}
 								result = result && isFoundInSet;
+								if(!result){
+									return false;
+								}
 							}
 						} else {
 							var iter = sourceObj1.length;
 							while(iter--) {
 								result = result && doComparation(sourceObj1[iter], sourceObj2[iter], Options);
+								if(!result){
+									return false;
+								}
 							}
 						}
 					} else {
@@ -163,7 +169,7 @@ function jSonCmp(src1, src2, options) {
 							}
 							continue;
 						}
-						result = result && CmpJSon.ObjectAlg.isExisting(propertyObjectField2) && doComparation(propertyObjectField1, propertyObjectField2);
+						result = result && CmpJSon.ObjectAlg.isExisting(propertyObjectField2) && doComparation(propertyObjectField1, propertyObjectField2, Options);
 						if(!result) {
 							return false;
 						}
