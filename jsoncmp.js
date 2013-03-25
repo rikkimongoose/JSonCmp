@@ -8,10 +8,10 @@ function jSonCmp(src1, src2, options) {
 		//Based on the idea from Ext.JSON functions.
 		decodeJSon : function(sourceStr) {
 			var isJSONSupported = (window.JSON && JSON.toString() == '[object JSON]'),
-				evalJSon = function(code) {
-					return eval('(' + code + ')');
-				};
-			dc = isJSONSupported ? JSON.parse : evalJSon;
+			if(!isJSONSupported){
+				return sourceStr;
+			}
+			dc = JSON.parse;
 			try {
 				return dc(sourceStr);
 			} catch (e) {
