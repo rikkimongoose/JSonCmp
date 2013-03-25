@@ -90,6 +90,7 @@ Versions
 + fix isArray
 + remove eval() in JSON parser
 + fix bug of comparing object with itself
++ improve speed
 
 *1.3*
 
