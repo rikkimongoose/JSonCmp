@@ -1,8 +1,10 @@
+//JSonCmp v. 1.3.1
+//Compare JSon objects
+//Copyright(c) Alexander "Rikki Mongoose" Teut, 2013
+//http://github.com/rikkimongoose/jsoncmp
+
 Ext.namespace('Ext.ux.util');
 
-/**
- * Custom routines for working with objects.
- */
 Ext.ux.util.Object = function() {
 		//private comparer body
 		function jSonCmp(src1, src2, options) {
