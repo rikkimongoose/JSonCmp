@@ -74,13 +74,13 @@ History
 ====
 It started from a bug in a huge web project with UI based on [Ext.JS](http://www.sencha.com/products/extjs). The settings window asked me to save changes even if I didn't change anything.
 
-Why did it happen? After a half of hous I've found the reason. The old and the new options objects were Ext.js-generated objects, serialized to JSon strings. There were almost the same, but the *order of params was differen*. String comparation for them returned false, that was definitely *wrong*.
+Why did it happen? After a half of hous I've found the reason. The old and the new options objects were Ext.js-generated objects, serialized to JSON strings. There were almost the same, but the *order of params was differen*. String comparation for them returned false, that was definitely *wrong*.
 
 The first version was released to fix this bug. But I've decide to proceed my research, because comparation in JavaScript isn't as easy as in strongly-typed languages.
 
 What if I compare 2 objects, generated separately, but with same values in same properties? Or 2 arrays with different objects? Or...?
 
-That's why I've started this project. It's called JSonCmp, but now it supports much more then JSon's.
+That's why I've started this project. It's called JSonCmp, but now it supports much more then JSON's.
 
 Versions
 ====
