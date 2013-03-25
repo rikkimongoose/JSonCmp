@@ -56,6 +56,12 @@ Options are optional. If you didn't define an option, the default value will be 
 
  jSonCmp([ 1, 2, 3, 4, 5 ], [ 1, 2, 3, 5, 4 ], { arraysAsSets : true })); # - true
 ```
+
+Browsers support
+===
+
+
+
 History
 ====
 It started from a bug in a huge web project with UI based on [Ext.JS](http://www.sencha.com/products/extjs). The settings window asked me to save changes even if I didn't change anything.
@@ -70,6 +76,11 @@ That's why I've started this project. It's called JSonCmp, but now it supports m
 
 Versions
 ====
+
+*1.3.1*
+
++ fix isArray
++ remove eval() in JSON parser
 
 *1.3*
 
