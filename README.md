@@ -60,7 +60,15 @@ Options are optional. If you didn't define an option, the default value will be 
 Browsers support
 ===
 
-
++ IE 8+
++ Firefox 18+
++ Chrome 24+
++ Safari 5.1+
++ Opera 12.1+
++ iOS Safari 4.0+
++ Opera Mini 5.0+
++ Android Browser 2.1+
++ Blackberry Browser 7.0+
 
 History
 ====
