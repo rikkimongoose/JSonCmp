@@ -89,6 +89,7 @@ Versions
 
 + fix isArray
 + remove eval() in JSON parser
++ fix bug of comparing object with itself
 
 *1.3*
 
