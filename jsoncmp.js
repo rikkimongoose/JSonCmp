@@ -157,7 +157,10 @@ function jSonCmp(src1, src2, options) {
 						var propertyObjectField1 = sourceObj1[propertyObject];
 						var propertyObjectField2 = sourceObj2[propertyObject];
 						if(CmpStack.objInCmpStack(propertyObjectField1) > -1 || CmpStack.objInCmpStack(propertyObjectField2) > -1) {
-							result = result && (propertyObjectField1 === propertyObjectField1);
+							result = result && CmpJSon.ObjectAlg.isExisting(propertyObjectField2) && (propertyObjectField1 === propertyObjectField2);
+							if(!result) {
+								return false;
+							}
 							continue;
 						}
 						result = result && CmpJSon.ObjectAlg.isExisting(propertyObjectField2) && doComparation(propertyObjectField1, propertyObjectField2);
