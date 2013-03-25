@@ -152,8 +152,8 @@ function jSonCmp(src1, src2, options) {
 					//console.log(sourceObj2);
 					for(var propertyObject in sourceObj1) {
 						//debug output
-						console.log(propertyObject + ":" + sourceObj1[propertyObject]);
-						console.log(propertyObject + ":" + sourceObj2[propertyObject]);
+						//console.log(propertyObject + ":" + sourceObj1[propertyObject]);
+						//console.log(propertyObject + ":" + sourceObj2[propertyObject]);
 						var propertyObjectField1 = sourceObj1[propertyObject];
 						var propertyObjectField2 = sourceObj2[propertyObject];
 						if(CmpStack.objInCmpStack(propertyObjectField1) > -1 || CmpStack.objInCmpStack(propertyObjectField2) > -1) {
@@ -162,7 +162,7 @@ function jSonCmp(src1, src2, options) {
 						}
 						result = result && CmpJSon.ObjectAlg.isExisting(propertyObjectField2) && doComparation(propertyObjectField1, propertyObjectField2);
 						if(!result) {
-							break;
+							return false;
 						}
 					}
 				}
