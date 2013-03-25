@@ -7,7 +7,7 @@ function jSonCmp(src1, src2, options) {
 	var CmpJSon = {
 		//Based on the idea from Ext.JSON functions.
 		decodeJSon : function(sourceStr) {
-			var isJSONSupported = (window.JSON && JSON.toString() == '[object JSON]'),
+			var isJSONSupported = (window.JSON && JSON.toString() == '[object JSON]');
 			if(!isJSONSupported){
 				return sourceStr;
 			}
