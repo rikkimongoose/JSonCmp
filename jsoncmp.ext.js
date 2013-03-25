@@ -164,7 +164,7 @@ Ext.ux.util.Object = function() {
 								}
 								result = result && CmpJSon.ObjectAlg.isExisting(propertyObjectField2) && doComparation(propertyObjectField1, propertyObjectField2);
 								if(!result) {
-									break;
+									return false;
 								}
 							}
 						}
