@@ -1,4 +1,4 @@
-//JSonCmp v. 1.3.1
+//JSonCmp v. 1.3.2
 //Compare JSon objects
 //Copyright(c) Alexander "Rikki Mongoose" Teut, 2013
 //http://github.com/rikkimongoose/jsoncmp
@@ -194,7 +194,11 @@ Ext.ux.util.Object = function() {
 				}
 				return true;
 			}
-			return doComparation(src1, src2, options);
+			// fix for following case:
+			// JSonCmp({}, {a:"ASDASD" , B: "SSSSS"})
+			// Direct return will make it true.
+			var flag = return doComparation(src1, src2, options);
+			if(flag == true) return doComparation(src2, src1, options);
 		}
     //public
     return {
